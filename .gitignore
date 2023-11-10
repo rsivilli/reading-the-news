@@ -10,3 +10,7 @@ tmp
 *.png
 *.mp4
 *.sqlite3
+
+# models
+
+models
