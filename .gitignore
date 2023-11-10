@@ -1,0 +1,12 @@
+# virtual environment files
+.venv
+
+#python specific 
+__pycache__
+
+# project working files 
+tmp
+*.wav
+*.png
+*.mp4
+*.sqlite3

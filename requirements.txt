@@ -1,0 +1,27 @@
+
+opencv-python
+pyaudio
+beautifulsoup4
+lxml
+requests
+html5lib
+diffusers
+transformers
+tokenizers
+accelerate
+scipy
+safetensors
+soundfile
+pillow
+xformers
+torch == 2.1.0+cu121
+torchaudio
+torchvision
+django
+python-dateutil
+mutagen
+moviepy
+nltk
+omegaconf
+tqdm
+--index-url https://download.pytorch.org/whl/cu121

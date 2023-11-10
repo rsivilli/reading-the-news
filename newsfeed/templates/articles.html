@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+    <h1>Articles for {{outlet.name}}</h1>
+    <ul>
+        {% for article in articles %}
+            <li>{{article.title}}-{{article.publish_date}}</li>
+        {% endfor %}
+
+    </ul>
+    
+
+    
+
+</body>
+</html>
