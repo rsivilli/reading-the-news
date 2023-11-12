@@ -1,30 +1,27 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}News Outlets{% endblock %}
+    
 
-<html>
-    <script type="text/javascript">
-        function scan_rss(outlet_name){
-            var apiUrl = `${outlet_name}/scan`;
-            fetch(apiUrl).then(response => {
-            return response.json();
-            }).then(data => {
-            // Work with JSON data here
-            console.log(data);
-            }).catch(err => {
-            // Do something for an error here
-            });
 
-        }
-        
-    </script>
-<body>
+{% block content %}
 
-<h1>News Outlets</h1>
-
-<ul>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>RSS Feed</th>
+        <th>Last Scanned</th>
+        <th>Scan</th>
+    </tr>
     {% for x in outlets %}
-        <li>{{x.name}} {{x.rss_last_scanned}} <button type="button" onclick="scan_rss({{x.id}})">Scan RSS</button></li>
+    <tr>
+        <td><a href="/outlets/{{x.id}}">{{x.id}}</a></td>
+        <td>{{x.name}}</td>
+        <td>{{x.rss_url}}</td>
+        <td>{{x.rss_last_scanned}}</td>
+        <td><button type="button" onclick="scan_rss({{x.id}})">Scan RSS</button></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 
-</body>
-</html>
+{% endblock %}

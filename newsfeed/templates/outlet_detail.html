@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{outlet.name}}{% endblock %}
+
+{% block content %}
+<p>RSS URL: {{outlet.rss_url}}</p>
+<p>Last Scanned: {{outlet.rss_last_scanned}} <button type="button" onclick="scan_rss({{x.id}})">Scan RSS</button></p>
+<p>Article Parsing Class: {{outlet.article_class}}</p>
+<p>Total Articles: {{articles.paginator.count}}</p>
+<h2>Articles</h2>
+<ul>
+
+
+{% for x in articles %}
+<li>
+    <h3>{{x.title}}</h3>
+    <p>Publish Date: {{x.publish_date}}</p>
+    <p>Scanned Date: {{x.scanned_date}}</p>
+    <div>
+    {% if x.audio_generated_on %}
+    Audio Generated On: {{x.audio_generated_on}}
+    {% else %}
+    <button type="button" onclick="generate_article_audio({{x.id}})">Generate Audio</button>
+    
+    {% endif %}
+    </div>
+    <div>
+    {% if x.images_generated_on %}
+    Images Generated On: {{x.audio_generated_on}}
+    {% else %}
+    <button type="button" onclick="generate_article_images({{x.id}})">Generate Images</button>
+    
+    {% endif %}
+    </div>
+    <div>
+    {% if x.video_generated_on %}
+    Video Generated On: {{x.audio_generated_on}}
+    {% else %}
+    <button type="button" onclick="generate_article_video({{x.id}})">Generate Video</button>
+    {% endif %}
+    </div>
+
+</li>
+{% endfor %}
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if articles.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ articles.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ articles.number }} of {{ articles.paginator.num_pages }}.
+        </span>
+
+        {% if articles.has_next %}
+            <a href="?page={{ articles.next_page_number }}">next</a>
+            <a href="?page={{ articles.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

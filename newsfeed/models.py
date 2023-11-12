@@ -13,6 +13,9 @@ class Article(models.Model):
     title = models.CharField(max_length=255)
     publish_date = models.DateTimeField(null=False)
     scanned_date = models.DateTimeField(null=False)
+    audio_generated_on = models.DateTimeField(null=True,blank=True)
+    images_generated_on = models.DateTimeField(null=True,blank=True)
+    video_generated_on = models.DateTimeField(null=True,blank=True)
     content = models.TextField()
     outlet = models.ForeignKey(NewsOutlet, on_delete=models.CASCADE)
 

@@ -63,6 +63,7 @@ class StableDiffusionWrapper:
         if isinstance(paragraphs, int):
             paragraphs = [paragraphs]
         article = Article.objects.filter(pk=article_id).first()
+        
         article_paragraphs = article.content.split("\n")
         if article is None:
             raise KeyError(f"There is no article for {article}")

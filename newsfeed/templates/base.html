@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    function generate_article_images(outlet_name){
+        var apiUrl = `${outlet_name}/scan`;
+        fetch(apiUrl).then(response => {
+        return response.json();
+        }).then(data => {
+        // Work with JSON data here
+        console.log(data);
+        }).catch(err => {
+        // Do something for an error here
+        });
+
+    }
+    function generate_article_audio(outlet_name){
+        var apiUrl = `${outlet_name}/scan`;
+        fetch(apiUrl).then(response => {
+        return response.json();
+        }).then(data => {
+        // Work with JSON data here
+        console.log(data);
+        }).catch(err => {
+        // Do something for an error here
+        });
+
+    }
+    function generate_article_video(outlet_name){
+        var apiUrl = `${outlet_name}/scan`;
+        fetch(apiUrl).then(response => {
+        return response.json();
+        }).then(data => {
+        // Work with JSON data here
+        console.log(data);
+        }).catch(err => {
+        // Do something for an error here
+        });
+
+    }
+    function scan_rss(outlet_name){
+        var apiUrl = `${outlet_name}/scan`;
+        fetch(apiUrl).then(response => {
+        return response.json();
+        }).then(data => {
+        // Work with JSON data here
+        console.log(data);
+        }).catch(err => {
+        // Do something for an error here
+        });
+
+    }
+    
+</script>
+<html>
+    <head>
+    <link rel="stylesheet" href="/static/style.css"  type="text/css" >
+    <title>{% block title %}My amazing site{% endblock %}</title>
+    </head>
+    <body>
+        <div id="navbar">
+            {% block navbar %}
+            <ul>
+                <li><a href="/outlets/">Outlets</a></li>
+                <li><a href="/outlets/">Blog</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+    </body>
+</html>
