@@ -15,19 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles import views
 from django.urls import re_path
 
 urlpatterns = [
-    path('', include('newsfeed.urls')),
-    path('', include('dreamer.urls')),
-    path('admin/', admin.site.urls),
+    path("", include("newsfeed.urls")),
+    path("", include("dreamer.urls")),
+    path("admin/", admin.site.urls),
 ]
 if settings.DEBUG:
     urlpatterns += [
         re_path(r"^article_pictures\/(?P<path>.*)$", views.serve),
         re_path(r"^article_audio\/(?P<path>.*)$", views.serve),
-        re_path(r"^article_video\/(?P<path>.*)$", views.serve)
+        re_path(r"^article_video\/(?P<path>.*)$", views.serve),
     ]

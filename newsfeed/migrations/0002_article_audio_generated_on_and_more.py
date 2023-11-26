@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('newsfeed', '0001_initial'),
+        ("newsfeed", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='audio_generated_on',
+            model_name="article",
+            name="audio_generated_on",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='article',
-            name='images_generated_on',
+            model_name="article",
+            name="images_generated_on",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='article',
-            name='video_generated_on',
+            model_name="article",
+            name="video_generated_on",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

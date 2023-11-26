@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Article,NewsOutlet
+from .models import Article, NewsOutlet
+
 # Register your models here.
 
 admin.site.register(NewsOutlet)

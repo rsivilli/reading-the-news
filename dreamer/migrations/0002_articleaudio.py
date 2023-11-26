@@ -4,18 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('dreamer', '0001_initial'),
+        ("dreamer", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ArticleAudio',
+            name="ArticleAudio",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=255)),
-                ('paragraph_number', models.SmallIntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=255)),
+                ("paragraph_number", models.SmallIntegerField()),
             ],
         ),
     ]

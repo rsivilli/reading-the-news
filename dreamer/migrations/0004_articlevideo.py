@@ -5,19 +5,32 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('newsfeed', '0001_initial'),
-        ('dreamer', '0003_articleaudio_article'),
+        ("newsfeed", "0001_initial"),
+        ("dreamer", "0003_articleaudio_article"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ArticleVideo',
+            name="ArticleVideo",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=255)),
-                ('article', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='newsfeed.article')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=255)),
+                (
+                    "article",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="newsfeed.article",
+                    ),
+                ),
             ],
         ),
     ]

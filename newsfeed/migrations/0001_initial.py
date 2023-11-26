@@ -5,33 +5,56 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies: tuple[str] = []  # type: ignore
 
     operations = [
         migrations.CreateModel(
-            name='NewsOutlet',
+            name="NewsOutlet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True)),
-                ('rss_url', models.CharField(max_length=255)),
-                ('rss_last_scanned', models.DateTimeField(blank=True, null=True)),
-                ('article_class', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
+                ("rss_url", models.CharField(max_length=255)),
+                (
+                    "rss_last_scanned",
+                    models.DateTimeField(blank=True, null=True),
+                ),
+                ("article_class", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('url', models.CharField(max_length=510, unique=True)),
-                ('title', models.CharField(max_length=255)),
-                ('publish_date', models.DateTimeField()),
-                ('scanned_date', models.DateTimeField()),
-                ('content', models.TextField()),
-                ('outlet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='newsfeed.newsoutlet')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("url", models.CharField(max_length=510, unique=True)),
+                ("title", models.CharField(max_length=255)),
+                ("publish_date", models.DateTimeField()),
+                ("scanned_date", models.DateTimeField()),
+                ("content", models.TextField()),
+                (
+                    "outlet",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="newsfeed.newsoutlet",
+                    ),
+                ),
             ],
         ),
     ]
