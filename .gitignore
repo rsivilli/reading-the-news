@@ -4,13 +4,18 @@
 #python specific 
 __pycache__
 
+
 # project working files 
 tmp
 *.wav
 *.png
 *.mp4
 *.sqlite3
-
+# project working directories
+article_pictures
+article_audio
+article_video
+tmp
 # models
 
 models
