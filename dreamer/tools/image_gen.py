@@ -8,9 +8,10 @@ from uuid import uuid4
 from pathlib import Path
 from tqdm import tqdm
 import os
+from dreamer.tools.base import ContentGenerator
 
 
-class StableDiffusionWrapper:
+class StableDiffusionWrapper(ContentGenerator):
     def __init__(
         self,
         model_path: str
@@ -130,6 +131,9 @@ class StableDiffusionWrapper:
             self.generate_and_save_image(
                 prompt=prompt, article=article, paragraph_number=p
             )
+
+    def generate_content(self, article_id: int, args: dict):
+        self.generate_images_for_article(article_id=article_id, **args)
 
 
 if __name__ == "__main__":

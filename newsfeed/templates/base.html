@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <script type="text/javascript">
-    function generate_article_images(outlet_name){
-        var apiUrl = `${outlet_name}/scan`;
+    function generate_article_images(article_id){
+        var apiUrl = `/articles/${article_id}/submit?job_type=IGF`;
         fetch(apiUrl).then(response => {
         return response.json();
         }).then(data => {
@@ -12,8 +12,8 @@
         });
 
     }
-    function generate_article_audio(outlet_name){
-        var apiUrl = `${outlet_name}/scan`;
+    function generate_article_audio(article_id){
+        var apiUrl = `/articles/${article_id}/submit?job_type=AGF`;
         fetch(apiUrl).then(response => {
         return response.json();
         }).then(data => {
@@ -24,8 +24,8 @@
         });
 
     }
-    function generate_article_video(outlet_name){
-        var apiUrl = `${outlet_name}/scan`;
+    function generate_article_video(article_id){
+        var apiUrl = `/articles/${article_id}/submit?job_type=VG`;
         fetch(apiUrl).then(response => {
         return response.json();
         }).then(data => {
@@ -60,7 +60,6 @@
             {% block navbar %}
             <ul>
                 <li><a href="/outlets/">Outlets</a></li>
-                <li><a href="/outlets/">Blog</a></li>
             </ul>
             {% endblock %}
         </div>

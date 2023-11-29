@@ -13,51 +13,41 @@
     Scanned Date: {{article.scanned_date}}
 </div>
 <div>
-    <h2>Raw Content</h2>
-    <div>
-        {% for p in split_content %}
-        <p>{{p}}</p>
-        {% endfor %}
-    </div>
-</div>
-<div>
-    <h2>Audio</h2>
-    {% if article.audio_generated_on %}
-    Audio Generated On: {{article.audio_generated_on}}
-    {% for aud in audio%}
-    <audio controls>
-        <source src="{{aud.location}}" type="audio/wav">
-      Your browser does not support the audio element.
-      </audio>
-    
-    {% endfor %}
-    {% else %}
-    <button type="button" onclick="generate_article_audio({{article.id}})">Generate Audio</button>
-    
-    {% endif %}
-    </div>
-    <div>
-        <h2>Images</h2>
-    {% if article.images_generated_on %}
-    Images Generated On: {{article.images_generated_on}}
-    {% for img in images %}
-    <div class="gallery">
-        <a target="_blank" href={{img.image_location}}>
-            {% load static %}
-          <img src="{{img.image_location}}" width="600" height="400">
+    <h2>Content</h2>
+        {% for p in paragraphs %}
+        <p>{{p.content}}</p>
+        <div>
+            <div>
+        {% if p.image %}
+        <a target="_blank" href={{p.image.image_location}}>
+          <img src="{{p.image.image_location}}" width="600" height="400">
         </a>
-        <div class="desc">Add a description of the image here</div>
-      </div>
-    {% endfor %}
+        
     {% else %}
     <button type="button" onclick="generate_article_images({{article.id}})">Generate Images</button>
+</div>
     
     {% endif %}
+    <div>
+        {% if p.audio %}
+        <audio controls>
+            <source src="{{p.audio.location}}" type="audio/wav">
+          Your browser does not support the audio element.
+          </audio>
+                {% else %}
+        <button type="button" onclick="generate_article_audio({{article.id}})">Generate Audio</button>
+        {% endif %}
     </div>
+    
+</div>
+    {% endfor %}
+    
+</div>
+
+       
     <div>
         <h2>Video</h2>
-    {% if article.video_generated_on%}
-    Video Generated On: {{article.video_generated_on}}
+    {% if video %}
     <video width="320" height="240" controls>
         <source src="{{video.location}}" type="video/mp4">
         

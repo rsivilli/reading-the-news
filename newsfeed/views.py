@@ -3,11 +3,18 @@ from django.http import HttpResponse
 from django.template import loader
 from datetime import datetime
 from django.core.paginator import Paginator
-
+from dataclasses import dataclass
 
 from dreamer.models import ArticleImage, ArticleAudio, ArticleVideo
 from .models import NewsOutlet, Article
 from .tools.rss import get_feed, get_article
+
+
+@dataclass
+class ParagraphView:
+    content: str
+    audio: ArticleAudio | None = None
+    image: ArticleImage | None = None
 
 
 def outlet_detail(request, outlet_id: int):
@@ -35,27 +42,38 @@ def outlet_detail(request, outlet_id: int):
 def article_detail(request, article_id: int):
     template = loader.get_template("article_detail.html")
     article = get_object_or_404(Article, pk=article_id)
-    images = (
+    images = list(
         ArticleImage.objects.filter(article__id=article_id)
         .order_by("paragraph_number")
         .all()
     )
-    audio = (
+    audio = list(
         ArticleAudio.objects.filter(article__id=article_id)
         .order_by("paragraph_number")
         .all()
     )
     video = ArticleVideo.objects.filter(article__id=article_id).first()
+    paragraph_views: list[ParagraphView] = []
+
     for aud in audio:
         aud.location = "/" + aud.location
     for img in images:
         img.image_location = "/" + "/".join(img.image_location.split("/")[-2:])
-    video.location = "/" + video.location
+    if video:
+        video.location = "/" + video.location
+    paragraphs = article.content.split("\n")
+    for i in range(len(paragraphs)):
+        tmp = ParagraphView(content=paragraphs[i])
+        if images and images[0].paragraph_number == i:
+            tmp.image = images.pop(0)
+        if audio and audio[0].paragraph_number == i:
+            tmp.audio = audio.pop(0)
+        paragraph_views.append(tmp)
+
+    print(video)
     context = {
         "article": article,
-        "split_content": article.content.split("\n"),
-        "images": images,
-        "audio": audio,
+        "paragraphs": paragraph_views,
         "video": video,
     }
     return HttpResponse(template.render(context, request))

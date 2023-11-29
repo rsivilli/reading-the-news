@@ -12,7 +12,7 @@
 
 {% for x in articles %}
 <li>
-    <h3>{{x.title}}</h3>
+    <h3><a href="/articles/{{x.id}}">{{x.title}}</a></h3>
     <p>Publish Date: {{x.publish_date}}</p>
     <p>Scanned Date: {{x.scanned_date}}</p>
     <div>

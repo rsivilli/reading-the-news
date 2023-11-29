@@ -7,7 +7,7 @@ from moviepy import editor
 from pathlib import Path
 from uuid import uuid4
 from tqdm import tqdm
-
+from dreamer.tools.base import ContentGenerator
 from django.db.models import Manager
 
 
@@ -35,7 +35,7 @@ def assemble_article_content(
     article_id: int,
     build_directory: str = "tmp",
     save_directory: str = "article_video",
-) -> None:
+):
     article = Article.objects.get(pk=article_id)
     audio_files = get_audio_files(article_id)
     image_files = get_image_files(article_id)
@@ -69,6 +69,12 @@ def assemble_article_content(
     full_video_location = Path(save_directory, f"{uuid4()}.mp4").as_posix()
     full_video.write_videofile(full_video_location)
 
-    ArticleVideo(location=full_video_location, article=article)
+    return ArticleVideo(location=full_video_location, article=article)
 
     # concat clips
+
+
+class VideoGenerator(ContentGenerator):
+    def generate_content(self, article_id: int, args: dict):
+        vid = assemble_article_content(article_id=article_id, **args)
+        vid.save()
